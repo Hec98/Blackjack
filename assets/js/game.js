@@ -18,7 +18,7 @@ const btnRequest = document.querySelector('#btnRequest');
 const btnStop = document.querySelector('#btnStop');
 const poitsHTML = document.querySelectorAll('small');
 const divPlayerCards = document.querySelector('#player-cards');
-const divPlayerComputer = document.querySelector('#computer-cards');
+const divComputerCards = document.querySelector('#computer-cards');
 
 // This function creates a new deck
 const createDeck = () => {
@@ -75,7 +75,7 @@ const computerTurn = (minimumPoints) => {
     imgCard.alt = card;
     imgCard.alt;
     imgCard.classList.add('cardD');
-    divPlayerComputer.append(imgCard);
+    divComputerCards.append(imgCard);
     
     if(minimumPoints > 21) break;
   
@@ -143,7 +143,7 @@ btnNew.addEventListener('click', () => {
   poitsHTML[1].innerText = 0;
 
   divPlayerCards.innerHTML = '';
-  divPlayerComputer.innerHTML = '';
+  divComputerCards.innerHTML = '';
 
   btnRequest.disabled = false;
   btnStop.disabled = false;
