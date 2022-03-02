@@ -42,3 +42,19 @@ const takeCard = () => {
 
 // while(deck.length != 0) takeCard();
 // takeCard();
+
+const valueCard = (card) => {
+  const value = card.substring(0, card.length - 1);
+
+  // if(isNaN(value)) points = (value === 'A') ? 11 : 10;
+  // else points = value * 1; // Convert the string to a number
+  // console.log(points + 5);
+  
+  return (isNaN(value)) ?
+         (value === 'A') ? 11 : 10
+         : value * 1;
+
+};
+
+const value = valueCard('AD');
+console.log(value);
