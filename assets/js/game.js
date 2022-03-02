@@ -14,8 +14,10 @@ let playerPoints = 0,
 
 // HTML references
 const btnRequest = document.querySelector('#btnRequest');
+const btnStop = document.querySelector('#btnStop');
 const poitsHTML = document.querySelectorAll('small');
 const divPlayerCards = document.querySelector('#player-cards');
+const divPlayerComputer = document.querySelector('#computer-cards');
 
 // This function creates a new deck
 const createDeck = () => {
@@ -59,11 +61,31 @@ const valueCard = (card) => {
 
 };
 
+// Computer turn
+const computerTurn = (minimumPoints) => {
+  do {
+    const card = takeCard();
+    computerPoints += valueCard(card);
+    poitsHTML[1].innerHTML = computerPoints;
+    
+    // <img class="cardD" src="assets/cards/AS.png" alt="AS">
+    const imgCard = document.createElement('img');
+    imgCard.src = `assets/cards/${card}.png`;
+    imgCard.alt = card;
+    imgCard.alt;
+    imgCard.classList.add('cardD');
+    divPlayerComputer.append(imgCard);
+    
+    if(minimumPoints > 21) break;
+  
+  } while((computerPoints < minimumPoints) && (minimumPoints <= 21));
+};
+
+
 // Events
 btnRequest.addEventListener('click', () => {
   const card = takeCard();
   playerPoints += valueCard(card);
-  
   poitsHTML[0].innerHTML = playerPoints;
   
   // <img class="cardD" src="assets/cards/AS.png" alt="AS">
@@ -77,9 +99,22 @@ btnRequest.addEventListener('click', () => {
   if(playerPoints > 21) {
     console.log('You lost');
     btnRequest.disabled = true;
+    btnStop.disabled = true;
+    computerTurn(playerPoints);
+
   } else if(playerPoints === 21) {
     console.log('21. Great!');
     btnRequest.disabled = true;
+    btnStop.disabled = true;
+    computerTurn(playerPoints);
   }
+
+});
+
+btnStop.addEventListener('click', () => {
+  btnRequest.disabled = true;
+  btnStop.disabled = true;
+
+  computerTurn(playerPoints);
 
 });
