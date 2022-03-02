@@ -13,8 +13,9 @@ let playerPoints = 0,
     computerPoints = 0;
 
 // HTML references
-const btnRequest = document.querySelector('#btnRequest')
+const btnRequest = document.querySelector('#btnRequest');
 const poitsHTML = document.querySelectorAll('small');
+const divPlayerCards = document.querySelector('#player-cards');
 
 // This function creates a new deck
 const createDeck = () => {
@@ -64,6 +65,21 @@ btnRequest.addEventListener('click', () => {
   playerPoints += valueCard(card);
   
   poitsHTML[0].innerHTML = playerPoints;
-  console.log(playerPoints)
+  
+  // <img class="cardD" src="assets/cards/AS.png" alt="AS">
+  const imgCard = document.createElement('img');
+  imgCard.src = `assets/cards/${card}.png`;
+  imgCard.alt = card;
+  imgCard.alt;
+  imgCard.classList.add('cardD');
+  divPlayerCards.append(imgCard);
+  
+  if(playerPoints > 21) {
+    console.log('You lost');
+    btnRequest.disabled = true;
+  } else if(playerPoints === 21) {
+    console.log('21. Great!');
+    btnRequest.disabled = true;
+  }
 
 });
