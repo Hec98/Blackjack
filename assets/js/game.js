@@ -9,6 +9,13 @@ let deck = [];
 const types = ['C', 'D', 'H', 'S']
 const specials = ['A', 'J', 'Q', 'K']
 
+let playerPoints = 0,
+    computerPoints = 0;
+
+// HTML references
+const btnRequest = document.querySelector('#btnRequest')
+const poitsHTML = document.querySelectorAll('small');
+
 // This function creates a new deck
 const createDeck = () => {
   for(let i = 2; i<= 10; i++) {
@@ -23,7 +30,6 @@ const createDeck = () => {
   }
   // console.log(deck);
   deck = _.shuffle(deck);
-  console.log(deck);
   return deck;
 };
 
@@ -32,11 +38,7 @@ createDeck();
 // This function allows you to take a new card
 const takeCard = () => {
   if (deck.length === 0) throw 'There are no cards in the deck';
-
   card = deck.shift()
-  console.log(card);
-  console.log(deck);
-
   return card;
 };
 
@@ -56,5 +58,12 @@ const valueCard = (card) => {
 
 };
 
-const value = valueCard('AD');
-console.log(value);
+// Events
+btnRequest.addEventListener('click', () => {
+  const card = takeCard();
+  playerPoints += valueCard(card);
+  
+  poitsHTML[0].innerHTML = playerPoints;
+  console.log(playerPoints)
+
+});
