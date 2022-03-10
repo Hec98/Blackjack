@@ -1,5 +1,7 @@
 # Blackjack
 
+**[Click here to play](https://hecdelatorre.github.io/Blackjack/)**
+
 * Blackjack game in JavaScript along with HTML and CSS.
 * Module pattern implementation.
 * Module export to allow use.
